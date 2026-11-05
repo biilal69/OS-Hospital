@@ -38,7 +38,7 @@ public class Patient extends Thread {
                     logger.log(this + " left.");
                     return;
                 }
-                
+                result = Result.NONE;
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
