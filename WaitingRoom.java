@@ -53,7 +53,8 @@ public class WaitingRoom {
     public Patient takePatient() throws InterruptedException {
         waitingPatients.acquire();  
 
-        if (closed) {
+        if (closed && count == 0) {
+            mutex.release();
             return null;         
         }
 
