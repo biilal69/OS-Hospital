@@ -40,7 +40,7 @@ public class Patient extends Thread {
                 }
                 
             }
-        } catch (InterruptedException e) {.
+        } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
     }
