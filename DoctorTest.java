@@ -1,8 +1,4 @@
-/**
- * DoctorTest (Member 4). Run: javac *.java && java DoctorTest
- * Uses a pre-filled waiting room. Patients are subclasses that only record
- * which result method the doctor called (their threads are never started).
- */
+
 public class DoctorTest {
 
     static class TestPatient extends Patient {
