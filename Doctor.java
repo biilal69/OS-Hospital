@@ -1,11 +1,10 @@
 import java.util.concurrent.ThreadLocalRandom;
 
-
 public class Doctor extends Thread {
 
-    public static final long ROOM_WAIT_MS = 3000;      // PDF: three seconds
-    public static final int MIN_TREATMENT_MS = 2000;   // our choice (ambiguity A4)
-    public static final int MAX_TREATMENT_MS = 6000;   // our choice
+    public static final long ROOM_WAIT_MS = 3000;      
+    public static final int MIN_TREATMENT_MS = 2000;   
+    public static final int MAX_TREATMENT_MS = 6000;   
 
     private final int id;
     private final WaitingRoom waitingRoom;

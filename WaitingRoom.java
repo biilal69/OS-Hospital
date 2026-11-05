@@ -1,6 +1,4 @@
-/**
- * WaitingRoom - Member 3.
- */
+
 public class WaitingRoom {
 
     private int size;            

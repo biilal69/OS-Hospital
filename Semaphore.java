@@ -1,8 +1,3 @@
-/**
- * Our own counting semaphore (built with synchronized / wait / notifyAll).
- * Starting value 1 = mutex. Starting value N = N identical resources.
- * Does NOT use java.util.concurrent.Semaphore.
- */
 public class Semaphore {
 
     private int permits; // always accessed inside synchronized methods
@@ -23,19 +18,12 @@ public class Semaphore {
         permits--;
     }
 
-    /** Adds a permit and wakes all waiters (notifyAll avoids lost wake-ups). */
     public synchronized void release() {
         permits++;
         notifyAll();
     }
 
-    /**
-     * Tries to take a permit within timeoutMillis.
-     * true  = got a permit.
-     * false = time ran out. timeoutMillis <= 0 means "do not wait at all".
-     * The deadline is computed ONCE; remaining time is recomputed after
-     * every wake-up, so the total wait never exceeds the timeout.
-     */
+
     public synchronized boolean tryAcquire(long timeoutMillis) throws InterruptedException {
         if (permits > 0) {
             permits--;
