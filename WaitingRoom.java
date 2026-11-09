@@ -1,7 +1,8 @@
 
 public class WaitingRoom {
 
-    private int size;            
+    private int size;    
+    private int count = 0;        
     private Patient[] seats;
     private int inptr = 0;
     private int outptr = 0; 
@@ -43,6 +44,7 @@ public class WaitingRoom {
         mutex.acquire();
         seats[inptr] = p;
         inptr = (inptr + 1) % size;
+        count++;
         logger.log(p + " entered the waiting room.");
         mutex.release();
 
@@ -51,19 +53,23 @@ public class WaitingRoom {
 
 
     public Patient takePatient() throws InterruptedException {
+
         waitingPatients.acquire();  
+        mutex.acquire();
 
         if (closed && count == 0) {
             mutex.release();
             return null;         
         }
-
-        mutex.acquire();
+    
         Patient p = seats[outptr];
-        outptr = (outptr + 1) % size;
-        mutex.release();
 
-        emptySeats.release();      
+        outptr = (outptr + 1) % size;
+        count--;
+
+        mutex.release();
+        emptySeats.release();   
+
         return p;
     }
 
